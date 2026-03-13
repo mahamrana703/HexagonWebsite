@@ -100,7 +100,7 @@ export function Footer() {
           </motion.div>
 
           {/* Resources Links */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -119,7 +119,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.div> */}
 
           {/* Company Links */}
           <motion.div
