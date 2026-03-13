@@ -74,7 +74,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="py-20 px-6 relative overflow-hidden" style={{ position: 'relative' }}>
+    <section className="pb-20 pt-30 px-6 relative overflow-hidden" style={{ position: 'relative' }}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-green-50" />
       

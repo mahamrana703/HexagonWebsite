@@ -45,7 +45,7 @@ const useCases = [
 
 export function UseCasesSection() {
   return (
-    <section className="py-20 px-6 relative bg-gradient-to-b from-white to-gray-50/50" style={{ position: 'relative' }}>
+    <section className="pb-20 pt-30 px-6 relative bg-gradient-to-b from-white to-gray-50/50" style={{ position: 'relative' }}>
       <div className="max-w-7xl mx-auto">
         <ParallaxElement speed={0.3}>
           <motion.div
