@@ -18,7 +18,7 @@ export function HeroSection() {
   const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-30 pb-20">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-green-50" />
       

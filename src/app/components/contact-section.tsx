@@ -36,23 +36,38 @@ export function ContactSection() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const onSubmit = () => {
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
-      console.log('Form submitted:', formData);
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          phone: '',
-          message: '',
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
         });
-        setErrors({});
-        setTimeout(() => setIsSubmitted(false), 5000);
-      }, 2000);
+        if (response.ok) {
+          setIsSubmitted(true);
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            phone: '',
+            message: '',
+          });
+          setErrors({});
+          setTimeout(() => setIsSubmitted(false), 5000);
+        } else {
+          alert('Failed to send message. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to send message. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -209,7 +224,7 @@ export function ContactSection() {
               <h3 className="text-xl font-bold mb-4 text-gray-800">Contact Info</h3>
               <div className="flex items-center mb-4">
                 <Mail className="w-5 h-5 mr-2 text-gray-500" />
-                <p className="text-gray-600">info@hexagoncx.com</p>
+                <p className="text-gray-600">{process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@hexagoncx.com'}</p>
               </div>
               <div className="flex items-center mb-4">
                 <Phone className="w-5 h-5 mr-2 text-gray-500" />

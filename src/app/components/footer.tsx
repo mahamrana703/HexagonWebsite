@@ -49,7 +49,7 @@ export function Footer() {
               className="mb-6"
             >
               <div className="mb-4">
-                <img src="/" alt="Hexagon CX" className="h-16 w-auto" />
+                <img src="src/assets/hexagon-logo.png" alt="Hexagon CX" className="h-16 w-auto" />
               </div>
               <p className="text-gray-600 mb-6 max-w-xs" style={{ lineHeight: '1.7' }}>
                 Revolutionizing customer service with intelligent AI voice agents that work 24/7.
@@ -100,7 +100,7 @@ export function Footer() {
           </motion.div>
 
           {/* Resources Links */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -119,7 +119,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.div> */}
 
           {/* Company Links */}
           <motion.div
