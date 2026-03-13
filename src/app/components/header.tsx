@@ -40,7 +40,7 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <motion.img
-              src="/"
+              src="src/assets/hexagon-logo.png"
               alt="Hexagon CX"
               className="h-16 w-auto"
               whileHover={{ scale: 1.05 }}
