@@ -224,7 +224,7 @@ export function ContactSection() {
               <h3 className="text-xl font-bold mb-4 text-gray-800">Contact Info</h3>
               <div className="flex items-center mb-4">
                 <Mail className="w-5 h-5 mr-2 text-gray-500" />
-                <p className="text-gray-600">info@hexagoncx.com</p>
+                <p className="text-gray-600">{process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@hexagoncx.com'}</p>
               </div>
               <div className="flex items-center mb-4">
                 <Phone className="w-5 h-5 mr-2 text-gray-500" />
