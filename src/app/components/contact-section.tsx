@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { GlassCard } from './glass-card';
 import { Send, Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
 import { ParallaxElement } from './parallax-element';
+import emailjs from '@emailjs/browser';
 
 interface ContactFormData {
   name: string;
@@ -41,27 +42,28 @@ export function ContactSection() {
     if (validate()) {
       setIsSubmitting(true);
       try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
+        await emailjs.send(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            company: formData.company,
+            phone: formData.phone,
+            message: formData.message,
           },
-          body: JSON.stringify(formData),
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        );
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          message: '',
         });
-        if (response.ok) {
-          setIsSubmitted(true);
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            phone: '',
-            message: '',
-          });
-          setErrors({});
-          setTimeout(() => setIsSubmitted(false), 5000);
-        } else {
-          alert('Failed to send message. Please try again.');
-        }
+        setErrors({});
+        setTimeout(() => setIsSubmitted(false), 5000);
       } catch (error) {
         console.error('Error:', error);
         alert('Failed to send message. Please try again.');
@@ -224,7 +226,7 @@ export function ContactSection() {
               <h3 className="text-xl font-bold mb-4 text-gray-800">Contact Info</h3>
               <div className="flex items-center mb-4">
                 <Mail className="w-5 h-5 mr-2 text-gray-500" />
-                <p className="text-gray-600">{process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@hexagoncx.com'}</p>
+                <p className="text-gray-600">{import.meta.env.VITE_CONTACT_EMAIL || 'info@hexagoncx.com'}</p>
               </div>
               <div className="flex items-center mb-4">
                 <Phone className="w-5 h-5 mr-2 text-gray-500" />
