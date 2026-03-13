@@ -62,12 +62,12 @@ export function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link to="/sign-in">
+            <Link to="https://hexagon-crm-five.vercel.app/login">
               <button className="px-6 py-2 text-gray-700 hover:text-[#1279e4] transition-colors font-medium">
                 Sign In
               </button>
             </Link>
-            <Link to="/get-started">
+            <Link to="https://hexagon-crm-five.vercel.app/register">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
