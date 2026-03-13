@@ -36,23 +36,38 @@ export function ContactSection() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const onSubmit = () => {
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
-      console.log('Form submitted:', formData);
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          phone: '',
-          message: '',
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
         });
-        setErrors({});
-        setTimeout(() => setIsSubmitted(false), 5000);
-      }, 2000);
+        if (response.ok) {
+          setIsSubmitted(true);
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            phone: '',
+            message: '',
+          });
+          setErrors({});
+          setTimeout(() => setIsSubmitted(false), 5000);
+        } else {
+          alert('Failed to send message. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to send message. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
