@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
     const mailOptions = {
       from: process.env.SMTP_USER,
-      to: 'info@hexagoncx.com', // or wherever you want to receive the emails
+      to: process.env.RECIPIENT_EMAIL || 'info@hexagoncx.com', // Use env var for recipient
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
