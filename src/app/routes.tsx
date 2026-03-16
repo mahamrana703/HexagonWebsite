@@ -17,6 +17,7 @@ import { TermsOfService } from "./pages/terms-of-service";
 import { CookiePolicy } from "./pages/cookie-policy";
 import { SignInPage } from "./pages/sign-in";
 import { GetStartedPage } from "./pages/get-started";
+import { PartnershipForm } from "./pages/partnership-form";
 import { RootLayout } from "./components/root-layout";
 
 export const router = createBrowserRouter([
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
       { path: "cookie-policy", Component: CookiePolicy },
       { path: "sign-in", Component: SignInPage },
       { path: "get-started", Component: GetStartedPage },
+      { path: "partnership-form", Component: PartnershipForm },
     ],
   },
 ]);

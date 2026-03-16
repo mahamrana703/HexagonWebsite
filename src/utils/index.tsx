@@ -1,1 +1,1 @@
-export { default as Logo } from "../../public/images/hexagon-logo.png";
+export { default as Logo } from "../../src/assets/hexagon-logo.png";
