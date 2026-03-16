@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
+import { Logo } from '../../utils';
 // import logo from 'figma:asset/dad7435a9cf9679714ec55ca98ea74165741b423.png';
 
 const navLinks = [
@@ -40,7 +41,7 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <motion.img
-              src="/public/images/hexagon-logo.png"
+              src={Logo}
               alt="Hexagon CX"
               className="h-16 w-auto"
               whileHover={{ scale: 1.05 }}

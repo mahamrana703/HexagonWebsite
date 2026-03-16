@@ -1,0 +1,1 @@
+export { default as Logo } from "../../public/images/hexagon-logo.png";

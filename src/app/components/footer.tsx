@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Twitter, Linkedin, Youtube, Github } from 'lucide-react';
 import { Link } from 'react-router';
+import { Logo } from '../../utils';
 // import logo from 'figma:asset/dad7435a9cf9679714ec55ca98ea74165741b423.png';
 
 const footerLinks = {
@@ -49,7 +50,7 @@ export function Footer() {
               className="mb-6"
             >
               <div className="mb-4">
-                <img src="/public/images/hexagon-logo.png" alt="Hexagon CX" className="h-16 w-auto" />
+                <img src={Logo} alt="Hexagon CX" className="h-16 w-auto" />
               </div>
               <p className="text-gray-600 mb-6 max-w-xs" style={{ lineHeight: '1.7' }}>
                 Revolutionizing customer service with intelligent AI voice agents that work 24/7.
