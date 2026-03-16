@@ -86,8 +86,26 @@ const handler = async (req, res) => {
         const errorData = await calResponse.text();
         console.error('Cal.com API error:', calResponse.status, errorData);
 
-        return res.status(500).json({
-          error: 'Failed to create calendar booking',
+        let errorMessage = 'Failed to create calendar booking';
+        let statusCode = 500;
+
+        if (calResponse.status === 400) {
+          try {
+            const errorJson = JSON.parse(errorData);
+            if (errorJson.error?.message?.includes('not available')) {
+              errorMessage = 'Selected time is not available. Please choose a different date and time.';
+              statusCode = 409; // Conflict
+            } else {
+              errorMessage = errorJson.error?.message || errorMessage;
+              statusCode = 400;
+            }
+          } catch (parseError) {
+            // If parsing fails, keep original error
+          }
+        }
+
+        return res.status(statusCode).json({
+          error: errorMessage,
           details: `Cal.com API returned ${calResponse.status}: ${errorData}`
         });
       }
