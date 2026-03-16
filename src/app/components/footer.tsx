@@ -28,7 +28,7 @@ const footerLinks = {
 
 const socialLinks = [
   { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/hexagon-cx/', label: 'LinkedIn' },
   { icon: Youtube, href: '#', label: 'YouTube' },
   { icon: Github, href: '#', label: 'GitHub' },
 ];
@@ -66,6 +66,7 @@ export function Footer() {
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
+                       target="_blank"
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ scale: 1.1, y: -2 }}
                       className="w-10 h-10 rounded-lg bg-white/80 backdrop-blur-sm border border-gray-200 flex items-center justify-center text-gray-600 hover:text-[#1279e4] hover:border-[#1279e4]/30 transition-all"
