@@ -18,6 +18,7 @@ import { CookiePolicy } from "./pages/cookie-policy";
 import { SignInPage } from "./pages/sign-in";
 import { GetStartedPage } from "./pages/get-started";
 import { PartnershipForm } from "./pages/partnership-form";
+import { DemoPage } from "./pages/demo";
 import { RootLayout } from "./components/root-layout";
 
 export const router = createBrowserRouter([
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       { path: "careers", Component: CareersPage },
       { path: "contact", Component: ContactPage },
       { path: "partners", Component: PartnersPage },
+      { path: "demo", Component: DemoPage },
       { path: "privacy-policy", Component: PrivacyPolicy },
       { path: "terms-of-service", Component: TermsOfService },
       { path: "cookie-policy", Component: CookiePolicy },
