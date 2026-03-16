@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Handshake, TrendingUp, Users, Award, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 export function PartnersPage() {
+  const navigate = useNavigate();
   const benefits = [
     {
       icon: TrendingUp,
@@ -55,6 +57,7 @@ export function PartnersPage() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/partnership-form')}
               className="px-8 py-4 bg-gradient-to-r from-[#1279e4] to-[#189f6c] text-white rounded-xl font-semibold shadow-lg shadow-[#1279e4]/30 hover:shadow-xl hover:shadow-[#1279e4]/40 transition-all inline-flex items-center gap-2"
             >
               Apply to Partner Program
