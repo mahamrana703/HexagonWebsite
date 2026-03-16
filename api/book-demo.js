@@ -29,7 +29,7 @@ const handler = async (req, res) => {
 
     // Check if Cal.com API key is available
     const calApiKey = process.env.CAL_COM_API_KEY;
-    const eventTypeId = process.env.CAL_COM_EVENT_TYPE_ID || 5048381;
+    const eventTypeId = parseInt(process.env.CAL_COM_EVENT_TYPE_ID) || 5048381;
 
     if (!calApiKey) {
       console.error('No Cal.com API key configured');
