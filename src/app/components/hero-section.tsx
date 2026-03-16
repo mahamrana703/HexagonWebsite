@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Phone, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router';
 import { AIWaveform } from './ai-waveform';
 import { GlassCard } from './glass-card';
 import { FloatingParticles } from './floating-particles';
@@ -16,6 +17,7 @@ export function HeroSection() {
   const y2 = useTransform(scrollY, [0, 500], [0, -100]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
+  const navigate = useNavigate();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-30 pb-20">
@@ -147,7 +149,7 @@ export function HeroSection() {
             </motion.div>
           </MagneticButton>
 
-          <MagneticButton className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 text-gray-800 rounded-xl font-semibold hover:border-[#1279e4]/30 hover:bg-white transition-all duration-300 inline-flex items-center justify-center gap-2 text-lg">
+          <MagneticButton onClick={() => navigate('/demo')} className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 text-gray-800 rounded-xl font-semibold hover:border-[#1279e4]/30 hover:bg-white transition-all duration-300 inline-flex items-center justify-center gap-2 text-lg">
             <Phone className="w-5 h-5" />
             <span>Book a Demo</span>
           </MagneticButton>
