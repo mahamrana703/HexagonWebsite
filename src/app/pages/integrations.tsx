@@ -33,7 +33,7 @@ export function IntegrationsPage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1279e4]/10 border border-[#1279e4]/20 mb-6">
               <Plug className="w-4 h-4 text-[#1279e4]" />
-              <span className="text-sm font-semibold text-[#1279e4]">100+ Integrations</span>
+              <span className="text-sm font-semibold text-[#1279e4]">Coming Soon</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
