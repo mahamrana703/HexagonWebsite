@@ -7,7 +7,7 @@ import { Logo } from '../../utils';
 
 const navLinks = [
   { name: 'Features', href: '/features' },
-  { name: 'Pricing', href: '/pricing' },
+  { name: 'Partners', href: '/partners' },
   { name: 'Use Cases', href: '/use-cases' },
   { name: 'Documentation', href: '/documentation' },
   { name: 'Contact', href: '/contact' },
