@@ -4,6 +4,7 @@ import { MessageCircle, X, Send, Sparkles, Bot } from 'lucide-react';
 
 export function AIChatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [conversationId, setConversationId] = useState<string | null>(null);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -27,42 +28,54 @@ export function AIChatbot() {
 
     // Add user message
     const userMessage = {
-      id: messages.length + 1,
+      id: 0,
       type: 'user',
       text: messageText,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
-    setMessages(prev => [...prev, userMessage]);
+    setMessages(prev => [...prev, { ...userMessage, id: prev.length + 1 }]);
     setInputValue('');
 
-    // Simulate bot response
-    setTimeout(() => {
+    // Simulate bot response timing, but fetch real answer from Dify
+    const currentConversationId = conversationId;
+    setTimeout(async () => {
+      let answerText: string =
+        "Sorry—I'm having trouble connecting to the AI assistant right now. Please try again.";
+      let nextConversationId: string | null | undefined = currentConversationId;
+
+      try {
+        const response = await fetch('/api/dify-chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: messageText, conversationId: currentConversationId }),
+        });
+
+        const data = await response.json().catch(() => null);
+        if (!response.ok) throw new Error(`Dify proxy returned ${response.status}`);
+
+        const candidate = data?.answer;
+        if (typeof candidate !== 'string' || !candidate.trim()) {
+          throw new Error('Missing answer');
+        }
+
+        answerText = candidate;
+        nextConversationId = data?.conversationId ?? currentConversationId;
+      } catch (error) {
+        console.error('Chat request failed:', error);
+      }
+
+      if (typeof nextConversationId === 'string' && nextConversationId.trim()) {
+        setConversationId(nextConversationId.trim());
+      }
+
       const botResponse = {
-        id: messages.length + 2,
+        id: 0,
         type: 'bot',
-        text: getBotResponse(messageText),
+        text: answerText,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
-      setMessages(prev => [...prev, botResponse]);
+      setMessages(prev => [...prev, { ...botResponse, id: prev.length + 1 }]);
     }, 1000);
-  };
-
-  const getBotResponse = (question: string) => {
-    const lowerQuestion = question.toLowerCase();
-    
-    if (lowerQuestion.includes('feature')) {
-      return "Our key features include 24/7 AI voice agents, real-time sentiment analysis, seamless CRM integration, and multilingual support. Would you like to know more about any specific feature?";
-    } else if (lowerQuestion.includes('pricing') || lowerQuestion.includes('cost')) {
-      return "We offer flexible pricing plans starting from $99/month for startups, $299/month for growing businesses, and custom enterprise solutions. Each plan includes different call volumes and features. Would you like to see detailed pricing?";
-    } else if (lowerQuestion.includes('demo')) {
-      return "I'd love to set up a demo for you! You can schedule one directly through our website or contact our sales team at demo@hexagoncx.com. Would you like me to redirect you to the demo booking page?";
-    } else if (lowerQuestion.includes('integration')) {
-      return "Hexagon CX integrates with major platforms including Salesforce, HubSpot, Zendesk, Slack, and more. We also offer a REST API for custom integrations. What platform are you looking to integrate with?";
-    } else if (lowerQuestion.includes('support')) {
-      return "We provide 24/7 customer support through email, live chat, and phone. Enterprise customers also get a dedicated account manager. How can I assist you further?";
-    } else {
-      return "That's a great question! Our AI call center platform helps businesses automate customer service with intelligent voice agents. Is there anything specific you'd like to know about our solution?";
-    }
   };
 
   return (

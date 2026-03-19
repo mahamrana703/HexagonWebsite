@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "dev:api": "node api-server.js",
+    "dev:all": "powershell -NoProfile -Command \"Start-Process node -ArgumentList 'api-server.js'; npm run dev\""
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
