@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import sitemap from 'vite-plugin-sitemap'
+import { sitemapRoutes } from './src/app/sitemap-routes'
 
 export default defineConfig({
   plugins: [
@@ -9,6 +11,28 @@ export default defineConfig({
     // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
+    sitemap({
+      hostname: process.env.VITE_PUBLIC_URL || 'https://hexagoncx.com',
+      dynamicRoutes: sitemapRoutes,
+      priority: {
+        '/': 1.0,
+        '/features': 0.8,
+        '/pricing': 0.8,
+        '/use-cases': 0.8,
+        '/integrations': 0.8,
+        '/documentation': 0.8,
+        '/api-reference': 0.8,
+        '/blog': 0.8,
+        '/support': 0.8,
+        '/about': 0.7,
+        '/careers': 0.7,
+        '/contact': 0.7,
+        '/partners': 0.7,
+        '/demo': 0.7,
+        '/privacy-policy': 0.5,
+        '/terms-of-service': 0.5,
+      },
+    }),
   ],
   resolve: {
     alias: {

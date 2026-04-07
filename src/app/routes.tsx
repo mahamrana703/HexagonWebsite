@@ -1,30 +1,55 @@
 import { createBrowserRouter } from "react-router";
-import { HomePage } from "./pages/home";
-import { FeaturesPage } from "./pages/features";
-import { PricingPage } from "./pages/pricing";
-import { UseCasesPage } from "./pages/use-cases";
-import { IntegrationsPage } from "./pages/integrations";
-import { DocumentationPage } from "./pages/documentation";
+import { RootLayout } from "./components/root-layout";
+import { AboutPage } from "./pages/about";
 import { APIReferencePage } from "./pages/api-reference";
 import { BlogPage } from "./pages/blog";
-import { SupportPage } from "./pages/support";
-import { AboutPage } from "./pages/about";
 import { CareersPage } from "./pages/careers";
 import { ContactPage } from "./pages/contact";
-import { PartnersPage } from "./pages/partners";
-import { PrivacyPolicy } from "./pages/privacy-policy";
-import { TermsOfService } from "./pages/terms-of-service";
 import { CookiePolicy } from "./pages/cookie-policy";
-import { SignInPage } from "./pages/sign-in";
-import { GetStartedPage } from "./pages/get-started";
-import { PartnershipForm } from "./pages/partnership-form";
 import { DemoPage } from "./pages/demo";
-import { RootLayout } from "./components/root-layout";
+import { DocumentationPage } from "./pages/documentation";
+import { FeaturesPage } from "./pages/features";
+import { GetStartedPage } from "./pages/get-started";
+import { HomePage } from "./pages/home";
+import { IntegrationsPage } from "./pages/integrations";
+import { PartnersPage } from "./pages/partners";
+import { PartnershipForm } from "./pages/partnership-form";
+import { PricingPage } from "./pages/pricing";
+import { PrivacyPolicy } from "./pages/privacy-policy";
+import { SignInPage } from "./pages/sign-in";
+import { SupportPage } from "./pages/support";
+import { TermsOfService } from "./pages/terms-of-service";
+import { UseCasesPage } from "./pages/use-cases";
+import { NotFoundPage } from "./pages/not-found"; // 
+
+export const sitemapRoutes = [
+  "/",
+  "/features",
+  "/pricing",
+  "/use-cases",
+  "/integrations",
+  "/documentation",
+  "/api-reference",
+  "/blog",
+  "/support",
+  "/about",
+  "/careers",
+  "/contact",
+  "/partners",
+  "/demo",
+  "/privacy-policy",
+  "/terms-of-service",
+  "/cookie-policy",
+  "/sign-in",
+  "/get-started",
+  "/partnership-form",
+];
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <NotFoundPage />,
     children: [
       { index: true, Component: HomePage },
       { path: "features", Component: FeaturesPage },
@@ -46,6 +71,7 @@ export const router = createBrowserRouter([
       { path: "sign-in", Component: SignInPage },
       { path: "get-started", Component: GetStartedPage },
       { path: "partnership-form", Component: PartnershipForm },
+      { path: "*", Component: NotFoundPage },
     ],
   },
 ]);
