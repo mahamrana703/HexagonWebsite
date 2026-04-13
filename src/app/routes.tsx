@@ -3,6 +3,7 @@ import { RootLayout } from "./components/root-layout";
 import { AboutPage } from "./pages/about";
 import { APIReferencePage } from "./pages/api-reference";
 import { BlogPage } from "./pages/blog";
+import { BlogDetailPage } from "./pages/blog-detail";
 import { CareersPage } from "./pages/careers";
 import { ContactPage } from "./pages/contact";
 import { CookiePolicy } from "./pages/cookie-policy";
@@ -59,6 +60,7 @@ export const router = createBrowserRouter([
       { path: "documentation", Component: DocumentationPage },
       { path: "api-reference", Component: APIReferencePage },
       { path: "blog", Component: BlogPage },
+      { path: "blog/:slug", Component: BlogDetailPage },
       { path: "support", Component: SupportPage },
       { path: "about", Component: AboutPage },
       { path: "careers", Component: CareersPage },
