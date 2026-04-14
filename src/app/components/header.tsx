@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Menu, X, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { Logo } from '../../utils';
 // import logo from 'figma:asset/dad7435a9cf9679714ec55ca98ea74165741b423.png';
 
@@ -15,8 +15,12 @@ const navLinks = [
 ];
 
 export function Header() {
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Check if we're on a blog detail page
+  const isBlogDetailPage = location.pathname.startsWith('/blog/') && location.pathname !== '/blog';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +59,11 @@ export function Header() {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-gray-700 hover:text-[#1279e4] transition-colors font-medium"
+                className={`transition-colors font-medium ${
+                  isBlogDetailPage && !scrolled
+                    ? 'text-white hover:text-[#60a5fa]'
+                    : 'text-gray-700 hover:text-[#1279e4]'
+                }`}
               >
                 {link.name}
               </Link>
@@ -65,7 +73,11 @@ export function Header() {
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-4">
             <Link to="https://app.hexagoncx.com/login">
-              <button className="px-6 py-2 text-gray-700 hover:text-[#1279e4] transition-colors font-medium">
+              <button className={`px-6 py-2 transition-colors font-medium ${
+                isBlogDetailPage && !scrolled
+                  ? 'text-white hover:text-[#60a5fa]'
+                  : 'text-gray-700 hover:text-[#1279e4]'
+              }`}>
                 Sign In
               </button>
             </Link>

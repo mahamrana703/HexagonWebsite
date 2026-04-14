@@ -105,9 +105,12 @@ export function BlogDetailPage() {
     <div className="relative">
       {/* ===== HERO BANNER ===== */}
       <section
-        className="relative mt-22 pt-8 pb-16 overflow-hidden"
+        className="relative pt-28 pb-16 overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #0a1628 0%, #0f2847 40%, #1279e4 100%)',
+          backgroundImage: blog.mainImage ? `url(${urlFor(blog.mainImage).url()})` : 'linear-gradient(135deg, #0a1628 0%, #0f2847 40%, #1279e4 100%)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
         }}
       >
         {/* Decorative elements */}
@@ -125,9 +128,11 @@ export function BlogDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-block text-[#60a5fa] text-sm font-medium tracking-wider uppercase mb-4">
-              Blog
-            </span>
+              <Link
+              to="/blog"
+              className="inline-block text-[#60a5fa] text-sm font-medium tracking-wider uppercase mb-4"
+            >  Back to Blog</Link>
+           
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight max-w-4xl mb-8">
               {blog.title}
             </h1>
